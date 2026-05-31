@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getTrackSrc(dimId) {
-        return `assets/bg_${dimId}.mp3`;
+        return `assets/bg_prime.mp3`;
     }
 
     function playDimensionTrack(dimId) {
