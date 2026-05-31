@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav Tatiya | Spider-Man Portfolio</title>
+    
+    <!-- Meta Descriptions for SEO -->
+    <meta name="description" content="Portfolio of Aarav Tatiya, an AI/ML and Front-End Developer. Explore generative AI tools, computer science workflows, and interactive projects inspired by Spider-Man.">
+    <meta name="author" content="Aarav Tatiya">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Inter:wght@400;500;700&family=Montserrat:wght@900&family=Comic+Neue:wght@400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Dimensional Rift / Tear Overlay -->
+    <div id="dimensional-tear-overlay" class="dimensional-tear-overlay">
+        <video id="portal-transition-video" src="assets/portal_transition.mp4" playsinline muted style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: none; z-index: 10;"></video>
+        <div class="tear-panel panel-left"></div>
+        <div class="tear-panel panel-right"></div>
+        <div class="glitch-static"></div>
+    </div>
+    <!-- Loading Sequence Overlay -->
+    <div id="loader-overlay" class="loader-overlay">
+        <div class="loader-content">
+            <svg id="loader-spider" class="loader-spider" viewBox="0 0 100 100">
+                <!-- Spider Legs -->
+                <path class="spider-leg leg-fl" d="M 40 45 Q 25 35 15 45" />
+                <path class="spider-leg leg-ml" d="M 38 50 Q 20 48 10 58" />
+                <path class="spider-leg leg-bl" d="M 39 55 Q 22 62 12 75" />
+                <path class="spider-leg leg-bbl" d="M 42 60 Q 28 75 22 90" />
+                
+                <path class="spider-leg leg-fr" d="M 60 45 Q 75 35 85 45" />
+                <path class="spider-leg leg-mr" d="M 62 50 Q 80 48 90 58" />
+                <path class="spider-leg leg-br" d="M 61 55 Q 78 62 88 75" />
+                <path class="spider-leg leg-bbr" d="M 58 60 Q 72 75 78 90" />
+                
+                <!-- Spider Body -->
+                <ellipse cx="50" cy="45" rx="7" ry="10" fill="currentColor" />
+                <ellipse cx="50" cy="58" rx="11" ry="15" fill="currentColor" />
+                <circle cx="47" cy="40" r="1.5" fill="#fff" />
+                <circle cx="53" cy="40" r="1.5" fill="#fff" />
+            </svg>
+            <div id="loader-text" class="loader-text">INITIALIZING SUIT TECH...</div>
+            <button id="skip-loader-btn" class="skip-loader-btn">SKIP INTRO</button>
+        </div>
+        <div class="loader-web-line line-t"></div>
+        <div class="loader-web-line line-b"></div>
+        <div class="loader-web-line line-l"></div>
+        <div class="loader-web-line line-r"></div>
+    </div>
+
+    <!-- Canvas Web Background -->
+    <canvas id="web-canvas"></canvas>
+    
+    <!-- Halftone Texture Overlay -->
+    <div class="halftone-overlay"></div>
+    
+    <!-- Comic Paper Grain Overlay -->
+    <div class="paper-overlay"></div>
+
+    <!-- Mouse Light Spotlight Spotlight Effect -->
+    <div class="cursor-spotlight" id="cursor-spotlight"></div>
+
+    <!-- Global Header/Navigation Chrome -->
+    <header class="global-navbar">
+        <div class="nav-logo-group">
+            <svg id="logo-spider" class="logo-spider" viewBox="0 0 100 100">
+                <path class="spider-leg" d="M 42 45 Q 30 35 20 43 M 40 50 Q 25 48 15 56 M 41 55 Q 26 62 18 72 M 43 60 Q 30 73 25 85" />
+                <path class="spider-leg" d="M 58 45 Q 70 35 80 43 M 60 50 Q 75 48 85 56 M 59 55 Q 74 62 82 72 M 57 60 Q 70 73 75 85" />
+                <ellipse cx="50" cy="46" rx="6" ry="8" fill="currentColor" />
+                <ellipse cx="50" cy="57" rx="9" ry="12" fill="currentColor" />
+            </svg>
+            <div class="brand-text-container">
+                <span class="nav-title font-bebas" id="nav-brand-title">AARAV TATIYA <span class="nav-suffix font-bebas" id="nav-brand-suffix">PRIME</span></span>
+            </div>
+        </div>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open navigation" aria-controls="nav-menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="#hero-section" class="nav-link active" id="nav-link-home"><span class="nav-text">HOME</span><span class="nav-rip-bg"></span></a>
+            <a href="#work-section" class="nav-link" id="nav-link-work"><span class="nav-text">WORK</span><span class="nav-rip-bg"></span></a>
+            <a href="#skills-section" class="nav-link" id="nav-link-skills"><span class="nav-text">SKILLS</span><span class="nav-rip-bg"></span></a>
+            <a href="#about-section" class="nav-link" id="nav-link-about"><span class="nav-text">ABOUT</span><span class="nav-rip-bg"></span></a>
+            <a href="#contact-section" class="nav-link" id="nav-link-contact"><span class="nav-text">CONTACT</span><span class="nav-rip-bg"></span></a>
+        </nav>
+        <div class="nav-actions">
+            <!-- Multiverse Variant Selector -->
+            <div class="variant-select-container">
+                <button id="variant-selector-btn" class="variant-selector-btn font-bebas" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="selector-id">EARTH-PRIME</span>
+                    <span class="selector-arrow">v</span>
+                </button>
+                <ul id="variant-dropdown" class="variant-dropdown font-bangers" role="listbox">
+                    <li class="dropdown-item active" data-dimension="prime" role="option">AARAV TATIYA (PRIME)</li>
+                    <li class="dropdown-item" data-dimension="1610" role="option">THE AI ENGINEER (EARTH-1610)</li>
+                    <li class="dropdown-item" data-dimension="65" role="option">THE GENAI DEV (EARTH-65)</li>
+                    <li class="dropdown-item" data-dimension="928" role="option">DATA STRATEGIST (EARTH-928)</li>
+                    <li class="dropdown-item" data-dimension="42" role="option">CREATIVE CODER (EARTH-42)</li>
+                </ul>
+            </div>
+            
+            <button id="music-toggle-btn" class="music-toggle-btn" aria-label="Toggle Background Music">
+                <svg class="speaker-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path class="wave wave-1" d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    <path class="wave wave-2" d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+            </button>
+            
+            <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Dark/Light Mode">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                    <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                    <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                    <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                    <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                    <line x1="18.36" y1="4.22" x2="19.78" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button id="hire-me-btn" class="hire-me-btn font-bebas">HIRE ME</button>
+        </div>
+    </header>
+
+    <!-- MAIN PORTFOLIO SECTIONS -->
+    <main>
+
+        <!-- SECTION 1: HERO (Full Viewport) -->
+        <section id="hero-section" class="hero-section text-center">
+            
+            <!-- Ability Orbs (Floating at edges on desktop, Grid layout on mobile) -->
+            <div class="orbs-container mobile-orbs-grid">
+                <div class="ability-orb orb-websense" id="orb-websense" data-desc="Websense: Intuitive grasp of user behavior and interface layouts.">
+                    <div class="orb-inner"><span class="font-bangers">WEBSENSE</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-websense">
+                    <h4 class="font-bangers">WEBSENSE</h4>
+                    <p>Advanced UX/UI intuition for creating clean, high-retention front-ends.</p>
+                </div>
+
+                <div class="ability-orb orb-agility" id="orb-agility" data-desc="Agility: Speed and adaptability in full-stack front-end programming.">
+                    <div class="orb-inner"><span class="font-bangers">AGILITY</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-agility">
+                    <h4 class="font-bangers">AGILITY</h4>
+                    <p>Rapid MVPs and adaptable UI code structures designed to scale.</p>
+                </div>
+
+                <div class="ability-orb orb-focus" id="orb-focus" data-desc="Focus: Deep specialized knowledge in AI/ML structures.">
+                    <div class="orb-inner"><span class="font-bangers">FOCUS</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-focus">
+                    <h4 class="font-bangers">FOCUS</h4>
+                    <p>Hyper-focused study in Generative AI tools and predictive model tuning.</p>
+                </div>
+
+                <div class="ability-orb orb-grip" id="orb-grip" data-desc="Grip: Creating sticky solutions and robust core software interfaces.">
+                    <div class="orb-inner"><span class="font-bangers">GRIP</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-grip">
+                    <h4 class="font-bangers">GRIP</h4>
+                    <p>Reliable C programming core knowledge and solid architectural frameworks.</p>
+                </div>
+
+                <div class="ability-orb orb-resolve" id="orb-resolve" data-desc="Resolve: Overcoming performance hurdles and optimization bugs.">
+                    <div class="orb-inner"><span class="font-bangers">RESOLVE</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-resolve">
+                    <h4 class="font-bangers">RESOLVE</h4>
+                    <p>Unyielding debugging drive, resolving performance bottlenecks fast.</p>
+                </div>
+
+                <div class="ability-orb orb-reflex" id="orb-reflex" data-desc="Reflex: Quick reaction time to user feedback and changing tech stack trends.">
+                    <div class="orb-inner"><span class="font-bangers">REFLEX</span></div>
+                </div>
+                <div class="orb-detail-card" id="orb-card-reflex">
+                    <h4 class="font-bangers">REFLEX</h4>
+                    <p>Instant adaptations to modern dev tooling and API integrations.</p>
+                </div>
+            </div>            <div class="hero-container">
+                <!-- Multiverse Orbiting Cards -->
+                <div class="hero-variants-grid">
+                    <div class="variant-orbit-card card-1610 font-bangers" data-dimension="1610">
+                        <div class="card-comic-overlay"></div>
+                        <span class="card-dim">EARTH-1610</span>
+                        <span class="card-title">THE AI ENGINEER</span>
+                        <p class="card-tagline">Neural networks as web patterns.</p>
+                        <span class="card-badge font-bebas">ML MODEL INK</span>
+                    </div>
+
+                    <div class="variant-orbit-card card-65 font-bangers" data-dimension="65">
+                        <div class="card-neon-scanlines"></div>
+                        <span class="card-dim">EARTH-65</span>
+                        <span class="card-title">THE GENAI DEV</span>
+                        <p class="card-tagline">Scanlines, CRT flicker, prompting.</p>
+                        <span class="card-badge font-bebas">GLITCH_STATIC</span>
+                    </div>
+
+                    <!-- Center Dual Mask Portrait System -->
+                    <div class="portrait-viewport-wrapper">
+                        <div class="portrait-frame" id="portrait-frame">
+                            <!-- Glitch layers for chromatic aberration -->
+                            <div class="glitch-img-layer layer-cyan" id="glitch-layer-cyan"></div>
+                            <div class="glitch-img-layer layer-magenta" id="glitch-layer-magenta"></div>
+                            <div class="glitch-img-layer layer-yellow" id="glitch-layer-yellow"></div>
+                            <img src="assets/profile_peter.jpg" alt="Aarav Tatiya Portrait" class="portrait-img img-civilian" id="portrait-civilian">
+                            <!-- Overlay Spider-Man Suit Image -->
+                            <img src="assets/profile_spidey.jpg" alt="Aarav Tatiya Spider-Man Suit" class="portrait-img img-hero" id="portrait-hero">
+                            
+                            <div class="portrait-outline-glow"></div>
+                        </div>
+                        <div class="portrait-dimension-tag font-bangers" id="portrait-dimension-tag">EARTH-PRIME</div>
+                    </div>
+
+                    <div class="variant-orbit-card card-928 font-bangers" data-dimension="928">
+                        <div class="card-chrome-refraction"></div>
+                        <span class="card-dim">EARTH-928</span>
+                        <span class="card-title">DATA STRATEGIST</span>
+                        <p class="card-tagline">HUD elements, chrome gradients.</p>
+                        <span class="card-badge font-bebas">METRIC_HUD</span>
+                    </div>
+
+                    <div class="variant-orbit-card card-42 font-bangers" data-dimension="42">
+                        <div class="card-watercolor-grain"></div>
+                        <span class="card-dim">EARTH-42</span>
+                        <span class="card-title">CREATIVE CODER</span>
+                        <p class="card-tagline">Sketching, watercolor washes.</p>
+                        <span class="card-badge font-bebas">ART_BRUSH</span>
+                    </div>
+                </div>
+
+                <!-- Headline & Taglines -->
+                <div class="hero-text-block font-courier">
+                    <div class="file-code font-courier" id="hero-file-code">FILE: EARTH-PRIME // SUBJECT: AARAV_TATIYA</div>
+                    <h1 class="main-headline font-bebas glitch-text" id="hero-main-title" data-text="AARAV TATIYA">AARAV TATIYA</h1>
+                    <div class="role-scramble-wrapper">
+                        <span class="role-tag font-montserrat outline-text" id="role-text">SPIDER-ML</span>
+                    </div>
+                    <p class="tagline-body font-comic" id="hero-tagline-text">AI & ML Student | Building Projects in Gen AI Tool / Front-End Development</p>
+                </div>
+
+                <!-- Portal CTA -->
+                <div class="portal-cta-wrapper">
+                    <button class="portal-cta-btn font-bebas" id="portal-cta-btn">
+                        <span class="portal-ring ring-1"></span>
+                        <span class="portal-ring ring-2"></span>
+                        <span class="portal-center-text">ENTER THE VERSE</span>
+                        <span class="portal-codes font-courier">E-1610 E-65 E-928 E-42 E-PRIME</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#work-section" class="scroll-down-indicator" id="scroll-indicator" aria-label="Scroll to projects">
+                <svg viewBox="0 0 100 100" class="bouncing-web-arrow">
+                    <line x1="50" y1="0" x2="50" y2="70" stroke="currentColor" stroke-width="4"/>
+                    <path d="M25 50 L50 75 L75 50" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+            </a>
+        </section>
+        <!-- SECTION 2: WORK/PROJECTS (The Multiverse Archive) -->
+        <section id="work-section" class="work-section">
+            <div class="section-container">
+                
+                <!-- Section Header -->
+                <div class="comic-header-wrapper">
+                    <div class="issue-badge font-bangers">VOL. #002</div>
+                    <h2 class="section-title font-montserrat glitch-text" data-text="CLASSIFIED WORKS">CLASSIFIED WORKS</h2>
+                    <span class="section-subtitle font-courier">// MULTIVERSE SECURITY ARCHIVES</span>
+                </div>
+
+                <!-- Multiverse Folder Tabs -->
+                <div class="multiverse-folders">
+                    <button class="folder-tab active" data-filter="all">
+                        <span class="folder-tag font-courier">ALL</span>
+                        <span class="folder-label font-bangers">INDEX</span>
+                    </button>
+                    <button class="folder-tab tab-1610" data-filter="1610">
+                        <span class="folder-tag font-courier">E-1610</span>
+                        <span class="folder-label font-bangers">AI ENGINEER</span>
+                    </button>
+                    <button class="folder-tab tab-65" data-filter="65">
+                        <span class="folder-tag font-courier">E-65</span>
+                        <span class="folder-label font-bangers">GENAI DEV</span>
+                    </button>
+                    <button class="folder-tab tab-928" data-filter="928">
+                        <span class="folder-tag font-courier">E-928</span>
+                        <span class="folder-label font-bangers">DATA STRATEGIST</span>
+                    </button>
+                    <button class="folder-tab tab-42" data-filter="42">
+                        <span class="folder-tag font-courier">E-42</span>
+                        <span class="folder-label font-bangers">CREATIVE CODER</span>
+                    </button>
+                </div>
+
+                <!-- Project Panels Grid -->
+                <div class="project-grid" id="project-grid">
+                    
+                    <!-- Panel 1: Earth-1610 AI/ML Card (Comic flip card) -->
+                    <div class="comic-panel-card dim-card-1610" data-category="1610" id="project-card-1">
+                        <div class="card-flipper">
+                            <div class="card-front">
+                                <div class="panel-issue-num font-bangers">ISSUE #001</div>
+                                <div class="panel-category-banner font-bangers bg-red">PREDICTIVE AI</div>
+                                <div class="panel-image-placeholder">
+                                    <div class="benday-dots"></div>
+                                    <svg viewBox="0 0 400 250" class="panel-vector-art">
+                                        <rect width="100%" height="100%" fill="#0A1E3F"/>
+                                        <g stroke="#C0C0C0" stroke-width="1.5" opacity="0.4">
+                                            <line x1="80" y1="120" x2="200" y2="60" />
+                                            <line x1="80" y1="120" x2="200" y2="180" />
+                                            <line x1="200" y1="60" x2="320" y2="120" />
+                                            <line x1="200" y1="180" x2="320" y2="120" />
+                                        </g>
+                                        <circle cx="80" cy="120" r="14" fill="#FF0040" stroke="#0D0D0D" stroke-width="2"/>
+                                        <circle cx="200" cy="60" r="16" fill="#FFE600" stroke="#0D0D0D" stroke-width="2"/>
+                                        <circle cx="200" cy="180" r="16" fill="#FFE600" stroke="#0D0D0D" stroke-width="2"/>
+                                        <circle cx="320" cy="120" r="22" fill="#FF0040" stroke="#0D0D0D" stroke-width="2"/>
+                                        <text x="200" y="65" font-family="Bangers" font-size="14" fill="#000" text-anchor="middle">INPUT</text>
+                                        <text x="200" y="185" font-family="Bangers" font-size="14" fill="#000" text-anchor="middle">WEIGHT</text>
+                                        <text x="320" y="125" font-family="Bebas Neue" font-size="16" fill="#fff" text-anchor="middle">BOUNDS</text>
+                                    </svg>
+                                </div>
+                                <div class="panel-content">
+                                    <h3 class="panel-title font-montserrat">Neural Net Prediction Suite</h3>
+                                    <p class="panel-desc">A deep-learning prediction module built to compute classification boundaries for predictive engineering tasks.</p>
+                                    <button class="btn-thwip font-bangers view-project-btn" data-project-id="1">INVESTIGATE →</button>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-back-content font-courier">
+                                    <h4 class="font-bangers">PROCESS SKETCHES</h4>
+                                    <div class="sketch-panel">
+                                        <p class="sketch-code">// EARTH-1610 LOG</p>
+                                        <p>Constructing feedforward MLP. Hyperplanes computed at 45° angle. Ben-Day matrix weights mapping neural outputs to coordinates.</p>
+                                        <div class="binary-drip">01011001 01001101 01001100</div>
+                                    </div>
+                                    <button class="btn-thwip font-bangers view-project-btn" data-project-id="1">RE-CALIBRATE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <!-- Panel 2: Earth-65 GenAI Card (Neon terminal holographic card) -->
+                    <div class="comic-panel-card dim-card-65" data-category="65" id="project-card-2">
+                        <div class="card-neon-glow"></div>
+                        <div class="matrix-rain-canvas-container">
+                            <canvas class="matrix-rain-canvas"></canvas>
+                        </div>
+                        <div class="panel-issue-num font-courier">>_ LOG.65.GEN</div>
+                        <div class="panel-category-banner font-bangers bg-orange">GEN AI</div>
+                        <div class="panel-image-placeholder border-pattern-2">
+                            <div class="crt-scanlines"></div>
+                            <svg viewBox="0 0 400 250" class="panel-vector-art">
+                                <rect width="100%" height="100%" fill="#000"/>
+                                <rect x="30" y="40" width="340" height="45" rx="4" fill="#0D0D0D" stroke="#00F0FF" stroke-width="1.5"/>
+                                <text x="50" y="67" font-family="Courier Prime" font-size="12" fill="#00FF41">&gt; Executing: ptcf_optimize.sh</text>
+                                <path d="M 50 120 L 350 120 L 325 210 L 75 210 Z" fill="rgba(255, 0, 170, 0.15)" stroke="#FF00AA" stroke-width="2"/>
+                                <text x="200" y="165" font-family="Bangers" font-size="24" fill="#00F0FF" text-anchor="middle">PTCF PROMPT SYSTEM</text>
+                                <text x="200" y="195" font-family="Courier Prime" font-size="11" fill="#FF00AA" text-anchor="middle">STATUS: CONVERGED</text>
+                            </svg>
+                        </div>
+                        <div class="panel-content">
+                            <h3 class="panel-title font-montserrat">> PROMPT ENGINE</h3>
+                            <p class="panel-desc">An interactive prompt refining platform based on the PTCF framework, streamlining LLM response precision.</p>
+                            <div class="terminal-output-prompt font-courier">
+                                <span class="terminal-prompt-label">SYSTEM@E65:~$</span>
+                                <input type="text" class="terminal-mini-input" placeholder="Enter prompt concept..." readonly value="Optimizing...">
+                            </div>
+                            <button class="btn-thwip font-bangers view-project-btn" data-project-id="2">RUN BLUEPRINT</button>
+                        </div>
+                    </div>
+ 
+                    <!-- Panel 3: Earth-928 Data Card (Futuristic glassmorphic HUD) -->
+                    <div class="comic-panel-card dim-card-928" data-category="928" id="project-card-3">
+                        <div class="card-glass-refraction"></div>
+                        <div class="panel-issue-num font-bebas">DATA_STREAM // 928</div>
+                        <div class="panel-category-banner font-bangers bg-blue">METRIC HUD</div>
+                        <div class="panel-image-placeholder">
+                            <svg viewBox="0 0 400 250" class="panel-vector-art">
+                                <rect width="100%" height="100%" fill="#1A0033"/>
+                                <circle cx="200" cy="125" r="75" fill="none" stroke="#C0C0C0" stroke-width="1.5" stroke-dasharray="5 5"/>
+                                <circle cx="200" cy="125" r="50" fill="none" stroke="#00F0FF" stroke-width="2"/>
+                                <line x1="200" y1="20" x2="200" y2="230" stroke="rgba(192, 192, 192, 0.2)" stroke-width="1"/>
+                                <line x1="20" y1="125" x2="380" y2="125" stroke="rgba(192, 192, 192, 0.2)" stroke-width="1"/>
+                                <path d="M 150 125 L 180 90 L 220 150 L 250 110" fill="none" stroke="#FF00AA" stroke-width="3"/>
+                                <circle cx="150" cy="125" r="4" fill="#00F0FF"/>
+                                <circle cx="180" cy="90" r="4" fill="#00F0FF"/>
+                                <circle cx="220" cy="150" r="4" fill="#00F0FF"/>
+                                <circle cx="250" cy="110" r="4" fill="#00F0FF"/>
+                            </svg>
+                        </div>
+                        <div class="panel-content">
+                            <h3 class="panel-title font-montserrat">Uniform Inventory Manager</h3>
+                            <p class="panel-desc">A premium responsive dashboard tracking stitching logs, apparel counts, and production queues.</p>
+                            <div class="hud-data-grid font-bebas">
+                                <div class="hud-metric-box">
+                                    <span class="hud-metric-lbl">LATENCY</span>
+                                    <span class="hud-metric-val val-green">INSTANT</span>
+                                </div>
+                                <div class="hud-metric-box">
+                                    <span class="hud-metric-lbl">QUEUE</span>
+                                    <span class="hud-metric-val">12 LOGS</span>
+                                </div>
+                            </div>
+                            <button class="btn-thwip font-bangers view-project-btn" data-project-id="3">DECRYPTION ON</button>
+                        </div>
+                    </div>
+ 
+                    <!-- Panel 4: Earth-42 Creative Coder (Watercolor sketch paint reveal) -->
+                    <div class="comic-panel-card dim-card-42" data-category="42" id="project-card-4">
+                        <div class="canvas-grain-overlay"></div>
+                        <div class="panel-issue-num font-comic">SKETCHBOOK // EARTH-42</div>
+                        <div class="panel-category-banner font-bangers bg-red">INK WASH</div>
+                        <div class="panel-image-placeholder">
+                            <div class="watercolor-ink-wash"></div>
+                            <svg viewBox="0 0 400 250" class="panel-vector-art">
+                                <rect width="100%" height="100%" fill="#D4A574" opacity="0.15"/>
+                                <!-- Hand-drawn web lines -->
+                                <path d="M 20 20 Q 150 70, 380 20 M 20 230 Q 150 180, 380 230 M 50 125 C 180 80, 220 170, 350 125" stroke="#4A3B32" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                <circle cx="200" cy="125" r="40" fill="none" stroke="#4A3B32" stroke-width="3" stroke-dasharray="10 4"/>
+                                <path d="M 200 85 L 200 165 M 160 125 L 240 125" stroke="#4A3B32" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="panel-content font-comic">
+                            <h3 class="panel-title font-montserrat">Interactive Web Sandbox</h3>
+                            <p class="panel-desc">A testing ground highlighting custom CSS 3D perspectives, Web Audio nodes, and graphic rendering.</p>
+                            <div class="pencil-doodles">
+                                <span>✎ audio_nodes</span>
+                                <span>✎ css_transforms</span>
+                            </div>
+                            <button class="btn-thwip font-bangers view-project-btn" data-project-id="4">TOUCH PAINT</button>
+                        </div>
+                    </div>
+ 
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: SKILLS (The Goober Interface) -->
+        <section id="skills-section" class="skills-section">
+            <div class="section-container">
+                
+                <div class="comic-header-wrapper text-center">
+                    <div class="issue-badge font-bangers">GOOBER V1.0</div>
+                    <h2 class="section-title font-montserrat glitch-text" data-text="THE GOOBER INTERFACE">THE GOOBER INTERFACE</h2>
+                    <span class="section-subtitle font-bangers">DRAG NODES TOGETHER TO FUSE SKILLS</span>
+                </div>
+
+                <div class="goober-hud-container">
+                    <!-- Canvas for physics nodes and spring web-lines -->
+                    <div class="goober-canvas-wrapper">
+                        <canvas id="goober-physics-canvas"></canvas>
+                        <!-- Instructions overlay inside canvas area -->
+                        <div class="goober-instructions font-courier">
+                            <p>// DRAG & FUSE MULTIVERSE NODES</p>
+                            <p>// DOUBLE CLICK A NODE TO FUSE WITH NEXT CLICKED NODE</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel: Dynamic Details Gadget Display -->
+                    <div class="goober-details-panel">
+                        <!-- Default placeholder state -->
+                        <div id="goober-placeholder" class="goober-placeholder-card active font-courier">
+                            <div class="spider-logo-flicker">🕸️</div>
+                            <h3>SYSTEM STABLE</h3>
+                            <p>Hover or drag skill nodes to query detailed diagnostics. Fusion output will display here upon connection.</p>
+                        </div>
+
+                        <!-- Dynamic Skill Detail Card (Hidden initially, shown on node interaction) -->
+                        <div id="goober-detail-card" class="goober-detail-card font-courier">
+                            <div class="gadget-header">
+                                <span class="gadget-logo font-bangers" id="gadget-detail-title">🕸️ NEURAL-NET</span>
+                                <span class="gadget-type" id="gadget-detail-type">AI/ML ARSENAL</span>
+                            </div>
+                            <div class="gadget-body">
+                                <div class="gadget-meter-row">
+                                    <span class="meter-label">BATTERY POWER:</span>
+                                    <div class="gadget-bar-wrapper">
+                                        <!-- Styled dynamically by JS to look like pressure gauges/radar/battery depending on selected variant -->
+                                        <div id="gadget-power-bar" class="gadget-power-bar"></div>
+                                    </div>
+                                    <span id="gadget-power-val" class="meter-val">85%</span>
+                                </div>
+                                <div class="gadget-tech-list font-courier" id="gadget-tech-list">
+                                    Python • TensorFlow • Scikit-Learn • Pandas
+                                </div>
+                                <div class="gadget-schematic-drawing" id="gadget-schematic-drawing">
+                                    <!-- Dynamic SVG outline drawing of the gadgets -->
+                                    <svg viewBox="0 0 100 60" id="gadget-svg">
+                                        <rect x="10" y="10" width="80" height="40" rx="3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" />
+                                        <circle cx="50" cy="30" r="15" fill="none" stroke="currentColor" stroke-width="2" />
+                                        <line x1="10" y1="30" x2="90" y2="30" stroke="currentColor" stroke-width="1" />
+                                    </svg>
+                                </div>
+                                <p class="gadget-quote font-courier" id="gadget-quote">
+                                    "Training models that see patterns across dimensions."
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Fusion Output Card -->
+                        <div id="goober-fusion-card" class="goober-fusion-card font-courier">
+                            <div class="fusion-glow-line"></div>
+                            <h3 class="font-bangers text-red">DIMENSIONAL COLLISION SUCCESSFUL!</h3>
+                            <div class="fusion-body">
+                                <div class="fusion-nodes font-bebas">
+                                    <span id="fusion-node-1" class="text-cyan">SKILL_A</span>
+                                    <span class="fusion-plus text-magenta">+</span>
+                                    <span id="fusion-node-2" class="text-yellow">SKILL_B</span>
+                                </div>
+                                <div class="fusion-result font-courier" id="fusion-result-text">
+                                    Resulting system integrated.
+                                </div>
+                                <div class="fusion-desc font-inter" id="fusion-result-desc">
+                                    Detailed combined power output.
+                                </div>
+                            </div>
+                            <button id="close-fusion-btn" class="btn-thwip font-bangers">RESET GADGET</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: ABOUT (Secret Identity / Multiverse Origin) -->
+        <section id="about-section" class="about-section">
+            <div class="section-container">
+                
+                <div class="comic-book-spread">
+                    
+                    <!-- Left Page: The Bite (Origin Panels) -->
+                    <div class="comic-page page-left" id="origin-page-left">
+                        <h2 class="page-title font-bangers">THE BITE // ORIGIN STORY</h2>
+                        <div class="comic-panels-grid" id="origin-panels-container">
+                            <!-- Panel 1: Grayscale Mundane -->
+                            <div class="comic-panel grayscale-panel" id="panel-origin-1">
+                                <div class="panel-num font-bangers">1</div>
+                                <div class="panel-image">
+                                    <div class="panel-text-box top-left font-courier">IGATPURI, MH</div>
+                                    <!-- Styled inline graphic representing student study -->
+                                    <div class="flat-panel-art art-mundane">
+                                        <svg viewBox="0 0 100 100" class="panel-graphics">
+                                            <rect width="100%" height="100%" fill="#E0DED7"/>
+                                            <line x1="10" y1="90" x2="90" y2="90" stroke="#000" stroke-width="2"/>
+                                            <rect x="25" y="40" width="50" height="40" fill="none" stroke="#000" stroke-width="2"/>
+                                            <line x1="30" y1="50" x2="70" y2="50" stroke="#000" stroke-width="1"/>
+                                            <line x1="30" y1="60" x2="70" y2="60" stroke="#000" stroke-width="1"/>
+                                            <line x1="30" y1="70" x2="60" y2="70" stroke="#000" stroke-width="1"/>
+                                            <circle cx="50" cy="20" r="10" fill="none" stroke="#000" stroke-width="2"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="panel-narration font-comic" id="origin-narrative-1">
+                                    "Just an ordinary student in Igatpuri, India, studying the mechanics of the web..."
+                                </div>
+                            </div>
+                            <!-- Panel 2: Color Burst Discovery -->
+                            <div class="comic-panel color-burst-panel" id="panel-origin-2">
+                                <div class="panel-num font-bangers">2</div>
+                                <div class="panel-image">
+                                    <div class="panel-text-box bottom-right font-courier">POLYTECHNIC LAB</div>
+                                    <div class="flat-panel-art art-bite">
+                                        <svg viewBox="0 0 100 100" class="panel-graphics">
+                                            <rect width="100%" height="100%" fill="#FF3300" opacity="0.3"/>
+                                            <circle cx="50" cy="50" r="30" fill="#FFE600" stroke="#000" stroke-width="2"/>
+                                            <!-- Spider shape -->
+                                            <ellipse cx="50" cy="50" rx="4" ry="6" fill="#000"/>
+                                            <ellipse cx="50" cy="40" rx="3" ry="4" fill="#000"/>
+                                            <path d="M50 48 Q30 40 25 30 M50 48 Q70 40 75 30 M50 52 Q30 55 20 65 M50 52 Q70 55 80 65" stroke="#000" stroke-width="2" fill="none"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="panel-narration font-comic" id="origin-narrative-2">
+                                    "Then at RSM Polytechnic in Nashik, a spider-ML bit. The code started running in my veins!"
+                                </div>
+                            </div>
+                            <!-- Panel 3: Powers Emerging -->
+                            <div class="comic-panel" id="panel-origin-3">
+                                <div class="panel-num font-bangers">3</div>
+                                <div class="panel-image">
+                                    <div class="panel-text-box top-right font-courier">COMPILING C...</div>
+                                    <div class="flat-panel-art art-compile">
+                                        <svg viewBox="0 0 100 100" class="panel-graphics">
+                                            <rect width="100%" height="100%" fill="#00FF41" opacity="0.1"/>
+                                            <text x="10" y="30" font-family="Courier Prime" font-size="8" fill="#00FF41">#include &lt;stdio.h&gt;</text>
+                                            <text x="10" y="45" font-family="Courier Prime" font-size="8" fill="#00FF41">int main() {</text>
+                                            <text x="20" y="60" font-family="Courier Prime" font-size="8" fill="#00FF41">train_model();</text>
+                                            <text x="20" y="75" font-family="Courier Prime" font-size="8" fill="#00FF41">printf("THWIP!");</text>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="panel-narration font-comic" id="origin-narrative-3">
+                                    "First C loops compiled, predictive models trained, and prompt workflows took shape!"
+                                </div>
+                            </div>
+                            <!-- Panel 4: The Mask -->
+                            <div class="comic-panel" id="panel-origin-4">
+                                <div class="panel-num font-bangers">4</div>
+                                <div class="panel-image">
+                                    <div class="panel-text-box bottom-left font-courier">THE IDE SWINGS</div>
+                                    <div class="flat-panel-art art-mask">
+                                        <svg viewBox="0 0 100 100" class="panel-graphics">
+                                            <rect width="100%" height="100%" fill="#0D0D0D"/>
+                                            <path d="M 10 10 L 90 90 M 90 10 L 10 90 M 10 50 L 90 50 M 50 10 L 50 90" stroke="#FF0040" stroke-width="1"/>
+                                            <path d="M30 30 Q50 20 70 30 M30 70 Q50 80 70 70" stroke="#00F0FF" stroke-width="2" fill="none"/>
+                                            <ellipse cx="50" cy="50" rx="10" ry="12" fill="#FF0040" stroke="#000" stroke-width="1.5"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="panel-narration font-comic" id="origin-narrative-4">
+                                    "Embracing an AI-first mindset, compiling structures that bridge dimensions."
+                                </div>
+                            </div>
+                        </div>
+                        <div class="narration-banner font-courier" id="origin-narration-banner">
+                            "I NEVER ASKED FOR THESE POWERS... BUT HERE WE ARE."
+                        </div>
+                    </div>
+
+                    <!-- Right Page: The Character Card & Split Photo -->
+                    <div class="comic-page page-right">
+                        <h2 class="page-title font-bangers">BEHIND THE MASK</h2>
+                        
+                        <!-- Split Image: Casual / Spider Suit -->
+                        <div class="split-portrait-container">
+                            <div class="split-portrait-frame">
+                                <div class="portrait-half civilian-half">
+                                    <img src="assets/profile_peter.jpg" alt="Aarav Student Profile" />
+                                </div>
+                                <div class="portrait-half hero-half">
+                                    <img src="assets/profile_spidey.jpg" alt="Aarav Spider-Man Suit" />
+                                </div>
+                                <div class="split-glitch-line"></div>
+                            </div>
+                        </div>
+
+                        <!-- Character Card Stats -->
+                        <div class="character-card-stats font-courier" id="character-card-stats">
+                            <div class="card-row">
+                                <span class="card-label font-bangers">REAL NAME:</span>
+                                <span class="card-value">AARAV TATIYA</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label font-bangers">BASE REGION:</span>
+                                <span class="card-value" id="card-region-val">Igatpuri, Maharashtra</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label font-bangers">AFFILIATION:</span>
+                                <span class="card-value" id="card-aff-val">Rajarshi Shahu Maharaj Polytechnic, Nashik</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label font-bangers">FIRST APPEARANCE:</span>
+                                <span class="card-value">2024.AIML</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label font-bangers">ACTIVE POWERS:</span>
+                                <span class="card-value text-red" id="card-powers-val">AI/ML, GenAI, Front-End, Prompt Eng</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label font-bangers">CRITICAL WEAKNESS:</span>
+                                <span class="card-value text-yellow" id="card-weakness-val">Coffee + Deep Learning Papers at 3AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Dimensional Origin Selector -->
+                        <div class="origin-variants-selector">
+                            <span class="selector-title font-bangers">SELECT DIMENSION ORIGIN:</span>
+                            <div class="origin-tabs font-bangers">
+                                <button class="origin-btn active" data-origin="prime">PRIME</button>
+                                <button class="origin-btn" data-origin="1610">1610</button>
+                                <button class="origin-btn" data-origin="65">65</button>
+                                <button class="origin-btn" data-origin="928">928</button>
+                                <button class="origin-btn" data-origin="42">42</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECTION 5: CONTACT (Open a Portal // Send a Web-Line) -->
+        <section id="contact-section" class="contact-section">
+            <!-- Parallax city skyline backdrop -->
+            <div class="city-skyline" id="city-skyline">
+                <div class="skyline-layer layer-back"></div>
+                <div class="skyline-layer layer-mid"></div>
+                <div class="skyline-layer layer-front"></div>
+            </div>
+
+            <div class="section-container">
+                
+                <div class="comic-header-wrapper text-center">
+                    <div class="issue-badge font-bangers">CONTACT</div>
+                    <h2 class="section-title font-montserrat glitch-text" data-text="GET IN TOUCH">GET IN TOUCH</h2>
+                    <span class="section-subtitle font-bangers">Send a web-line directly to my inbox.</span>
+                </div>
+
+                <div class="contact-grid single-column">
+                    <!-- Column: Form Card -->
+                    <div class="contact-form-wrapper">
+                        <div class="contact-form-card font-courier">
+                            <form id="oscorp-contact-form" class="oscorp-form">
+                                
+                                <div class="form-group">
+                                    <label for="form-name" class="font-bangers">YOUR NAME</label>
+                                    <input type="text" id="form-name" name="name" required class="form-input" placeholder="e.g. Peter Parker">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="form-email" class="font-bangers">YOUR EMAIL</label>
+                                    <input type="email" id="form-email" name="email" required class="form-input" placeholder="e.g. peter@dailybugle.com">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="form-message" class="font-bangers">YOUR MESSAGE</label>
+                                    <textarea id="form-message" name="message" rows="5" required class="form-input" placeholder="Write your message here..."></textarea>
+                                </div>
+
+                                <div class="submit-shooter-wrapper">
+                                    <button type="submit" id="form-submit-btn" class="form-submit-btn font-bebas">
+                                        <span class="web-muzzle"></span>
+                                        SEND MESSAGE
+                                    </button>
+                                </div>
+                            </form>
+
+                            <div id="form-success-overlay" class="form-success-overlay font-bangers">
+                                <div class="success-message">
+                                    <div class="success-icon">🕸️</div>
+                                    <h3>MESSAGE CAUGHT IN WEB!</h3>
+                                    <p>I will swing back to you soon.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Classified Files details link -->
+                <div class="classified-secure-details text-center font-courier">
+                    <span class="contact-social-icons">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a> | <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> | <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+                    </span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="global-footer">
+        <div class="footer-container">
+            <span class="footer-quote font-montserrat" id="uncle-ben-quote">"WITH GREAT POWER COMES GREAT RESPONSIBILITY."</span>
+            <p class="footer-copy font-inter">&copy; 2026 Aarav Tatiya. Styled in a Spider-Verse aesthetic. Built with local AI pair programming tools.</p>
+            <div class="secret-symbiote-link">
+                <a href="#symbiote" id="symbiote-toggle-link" class="font-bangers">EMBRACE THE SYMBIOTE</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CASE STUDY PROJECT DETAIL MODAL (Two-spread Comic Book Layout) -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modal-close-btn" aria-label="Close details">
+                <!-- SVG Web X Cross -->
+                <svg viewBox="0 0 100 100" width="30" height="30">
+                    <line x1="20" y1="20" x2="80" y2="80" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="80" y1="20" x2="20" y2="80" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M 20 20 Q 50 10 80 20 M 80 20 Q 90 50 80 80 M 80 80 Q 50 90 20 80 M 20 80 Q 10 50 20 20" stroke="currentColor" stroke-width="1.5" fill="none" opacity="0.6"/>
+                </svg>
+            </button>
+            <div class="modal-book-spread">
+                <!-- Left Page: Cover/Illustration -->
+                <div class="modal-page page-left" id="modal-page-left">
+                    <div class="modal-cover-img-wrapper">
+                        <!-- Placed dynamically via JS -->
+                        <div id="modal-project-graphic" class="modal-graphic-placeholder"></div>
+                    </div>
+                </div>
+                
+                <!-- Right Page: Tech Specs & Story -->
+                <div class="modal-page page-right">
+                    <div class="modal-header">
+                        <div class="modal-category font-bangers" id="modal-project-category">AI MODEL</div>
+                        <h2 class="modal-title font-montserrat" id="modal-project-title">PROJECT DETAILS</h2>
+                    </div>
+                    <div class="modal-body-content font-inter">
+                        <h4 class="font-bangers header-accent">THE MISSION OBJECTIVE</h4>
+                        <p id="modal-project-desc">Detailed project description goes here...</p>
+                        
+                        <h4 class="font-bangers header-accent">SUIT DIAGNOSTICS & STACK</h4>
+                        <div class="modal-tech-stack" id="modal-project-tech">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <h4 class="font-bangers header-accent">POWER METERS</h4>
+                        <div class="modal-stats" id="modal-project-stats">
+                            <!-- Stat bars populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Canvas Particle Pointer Tooltip -->
+    <div id="web-pointer" class="web-pointer"></div>
+
+    <!-- CUSTOM APP LOGIC SCRIPTS -->
+    <script src="app.js"></script>
+</body>
+</html>
