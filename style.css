@@ -3567,16 +3567,37 @@ canvas#contact-portal-canvas {
 @media (max-width: 768px) {
     .hero-variants-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .variant-orbit-card {
+        height: auto;
+        min-height: 130px;
+        padding: 1rem;
     }
     .portrait-viewport-wrapper {
         grid-column: span 1;
+        width: min(70vw, 260px);
+        height: min(88vw, 320px);
     }
     .portal-container {
         height: 350px;
     }
-}
-
-@media (max-width: 640px) {
+    .hero-container {
+        gap: 1.2rem;
+    }
+    .hero-text-block {
+        padding: 0 0.5rem;
+    }
+    .file-code {
+        font-size: 0.75rem;
+        word-break: break-all;
+    }
+    .role-tag {
+        font-size: 1.2rem;
+    }
+    .tagline-body {
+        font-size: 1rem;
+    }
     .multiverse-folders {
         overflow-x: auto;
         flex-wrap: nowrap;
@@ -3602,7 +3623,10 @@ canvas#contact-portal-canvas {
         white-space: nowrap;
     }
     .folder-tab::before {
-        clip-path: polygon(0 12px, 12px 0, 70px 0, 82px 12px, 100% 12px, 100% 100%, 0 100%);
+        clip-path: polygon(0 12px, 12px 0, 65px 0, 78px 12px, 100% 12px, 100% 100%, 0 100%);
+    }
+    .project-grid {
+        gap: 1.5rem;
     }
     .comic-book-spread {
         padding: 1rem;
@@ -3639,15 +3663,33 @@ canvas#contact-portal-canvas {
         height: auto;
     }
     .goober-canvas-wrapper {
-        height: 300px;
+        height: 280px;
     }
     .goober-details-panel {
-        height: 280px;
-        min-height: 280px;
+        height: 260px;
+        min-height: 260px;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .contact-form-card {
+        padding: 1.2rem;
+    }
+    .section-container {
+        padding: 0 0.5rem;
+    }
+    .comic-header-wrapper {
+        margin-bottom: 2rem;
+    }
+    .classified-secure-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
     .hero-section {
         padding: 7rem 0.5rem 2rem;
     }
@@ -3674,9 +3716,13 @@ canvas#contact-portal-canvas {
         font-size: 1rem;
         padding: 14px 16px;
         min-height: 76px;
+        width: min(100%, 280px);
     }
     .portal-codes {
         font-size: 0.5rem;
+    }
+    .portal-ring {
+        display: none;
     }
     .section-title {
         font-size: 1.8rem;
@@ -3686,6 +3732,82 @@ canvas#contact-portal-canvas {
     }
     .footer-quote {
         font-size: 1.2rem;
+    }
+    .variant-orbit-card {
+        min-height: 110px;
+    }
+    .variant-orbit-card .card-title {
+        font-size: 1.1rem;
+    }
+    .variant-orbit-card .card-tagline {
+        font-size: 0.7rem;
+    }
+    .nav-title {
+        font-size: 1.2rem;
+    }
+    .nav-actions {
+        gap: 0.4rem;
+    }
+    .comic-panel {
+        height: auto;
+    }
+    .comic-panel .panel-image {
+        height: 90px;
+    }
+    .panel-image-placeholder {
+        height: 120px;
+    }
+    .panel-title {
+        font-size: 1.1rem;
+    }
+    .modal-card {
+        width: 95%;
+        height: 85%;
+        max-height: none;
+    }
+    .modal-page {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-variants-grid {
+        gap: 0.6rem;
+    }
+    .variant-orbit-card {
+        min-height: 100px;
+        padding: 0.7rem;
+    }
+    .variant-orbit-card .card-title {
+        font-size: 1rem;
+    }
+    .portrait-viewport-wrapper {
+        width: min(80vw, 220px);
+        height: min(100vw, 270px);
+    }
+    .ability-orb {
+        max-width: 60px;
+    }
+    .nav-title {
+        font-size: 1rem;
+    }
+    .music-toggle-btn, .theme-toggle-btn {
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+    }
+    .variant-selector-btn {
+        max-width: 110px;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    .file-code {
+        font-size: 0.65rem;
+    }
+    .portal-cta-btn {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        min-height: 60px;
     }
 }
 
