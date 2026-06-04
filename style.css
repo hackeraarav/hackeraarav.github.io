@@ -3689,127 +3689,7 @@ canvas#contact-portal-canvas {
     }
 }
 
-@media (max-width: 480px) {
-    .hero-section {
-        padding: 7rem 0.5rem 2rem;
-    }
-    .main-headline {
-        font-size: clamp(2.2rem, 14vw, 3rem);
-    }
-    .role-tag {
-        font-size: 1.1rem;
-    }
-    .tagline-body {
-        font-size: 0.9rem;
-    }
-    .mobile-orbs-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
-    }
-    .ability-orb {
-        max-width: 70px;
-    }
-    .ability-orb span {
-        font-size: 0.55rem;
-    }
-    .portal-cta-btn {
-        font-size: 1rem;
-        padding: 14px 16px;
-        min-height: 76px;
-        width: min(100%, 280px);
-    }
-    .portal-codes {
-        font-size: 0.5rem;
-    }
-    .portal-ring {
-        display: none;
-    }
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .section-subtitle {
-        font-size: 1rem;
-    }
-    .footer-quote {
-        font-size: 1.2rem;
-    }
-    .variant-orbit-card {
-        min-height: 110px;
-    }
-    .variant-orbit-card .card-title {
-        font-size: 1.1rem;
-    }
-    .variant-orbit-card .card-tagline {
-        font-size: 0.7rem;
-    }
-    .nav-title {
-        font-size: 1.2rem;
-    }
-    .nav-actions {
-        gap: 0.4rem;
-    }
-    .comic-panel {
-        height: auto;
-    }
-    .comic-panel .panel-image {
-        height: 90px;
-    }
-    .panel-image-placeholder {
-        height: 120px;
-    }
-    .panel-title {
-        font-size: 1.1rem;
-    }
-    .modal-card {
-        width: 95%;
-        height: 85%;
-        max-height: none;
-    }
-    .modal-page {
-        padding: 1.5rem 1rem;
-    }
-}
 
-@media (max-width: 360px) {
-    .hero-variants-grid {
-        gap: 0.6rem;
-    }
-    .variant-orbit-card {
-        min-height: 100px;
-        padding: 0.7rem;
-    }
-    .variant-orbit-card .card-title {
-        font-size: 1rem;
-    }
-    .portrait-viewport-wrapper {
-        width: min(80vw, 220px);
-        height: min(100vw, 270px);
-    }
-    .ability-orb {
-        max-width: 60px;
-    }
-    .nav-title {
-        font-size: 1rem;
-    }
-    .music-toggle-btn, .theme-toggle-btn {
-        width: 32px;
-        height: 32px;
-        padding: 4px;
-    }
-    .variant-selector-btn {
-        max-width: 110px;
-        font-size: 0.75rem;
-        padding: 4px 8px;
-    }
-    .file-code {
-        font-size: 0.65rem;
-    }
-    .portal-cta-btn {
-        font-size: 0.85rem;
-        padding: 10px 12px;
-        min-height: 60px;
-    }
-}
 
 /* ==========================================================================
    FINAL POLISH LAYER
@@ -4302,4 +4182,126 @@ body.menu-open {
     #orb-card-agility  { top: 78%; left: 6%; }
     #orb-card-grip     { top: 18%; right: 6%; }
     #orb-card-resolve  { top: 78%; right: 6%; }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 7rem 0.5rem 2rem;
+    }
+    .main-headline {
+        font-size: clamp(2.2rem, 14vw, 3rem);
+    }
+    .role-tag {
+        font-size: 1.1rem;
+    }
+    .tagline-body {
+        font-size: 0.9rem;
+    }
+    .mobile-orbs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    .ability-orb {
+        max-width: 70px;
+    }
+    .ability-orb span {
+        font-size: 0.55rem;
+    }
+    .portal-cta-btn {
+        font-size: 1rem;
+        padding: 14px 16px;
+        min-height: 76px;
+        width: min(100%, 280px);
+    }
+    .portal-codes {
+        font-size: 0.5rem;
+    }
+    .portal-ring {
+        display: none;
+    }
+    .section-title {
+        font-size: 1.8rem;
+    }
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    .footer-quote {
+        font-size: 1.2rem;
+    }
+    .variant-orbit-card {
+        min-height: 110px;
+    }
+    .variant-orbit-card .card-title {
+        font-size: 1.1rem;
+    }
+    .variant-orbit-card .card-tagline {
+        font-size: 0.7rem;
+    }
+    .nav-title {
+        font-size: 1.2rem;
+    }
+    .nav-actions {
+        gap: 0.4rem;
+    }
+    .comic-panel {
+        height: auto;
+    }
+    .comic-panel .panel-image {
+        height: 90px;
+    }
+    .panel-image-placeholder {
+        height: 120px;
+    }
+    .panel-title {
+        font-size: 1.1rem;
+    }
+    .modal-card {
+        width: 95%;
+        height: 85%;
+        max-height: none;
+    }
+    .modal-page {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-variants-grid {
+        gap: 0.6rem;
+    }
+    .variant-orbit-card {
+        min-height: 100px;
+        padding: 0.7rem;
+    }
+    .variant-orbit-card .card-title {
+        font-size: 1rem;
+    }
+    .portrait-viewport-wrapper {
+        width: min(80vw, 220px);
+        height: min(100vw, 270px);
+    }
+    .ability-orb {
+        max-width: 60px;
+    }
+    .nav-title {
+        font-size: 1rem;
+    }
+    .music-toggle-btn, .theme-toggle-btn {
+        width: 32px;
+        height: 32px;
+        padding: 4px;
+    }
+    .variant-selector-btn {
+        max-width: 110px;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+    .file-code {
+        font-size: 0.65rem;
+    }
+    .portal-cta-btn {
+        font-size: 0.85rem;
+        padding: 10px 12px;
+        min-height: 60px;
+    }
 }
