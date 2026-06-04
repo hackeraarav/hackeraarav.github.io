@@ -1061,10 +1061,34 @@ document.addEventListener("DOMContentLoaded", () => {
         skillsCanvas.removeEventListener("mousedown", onMouseDownSkills);
         skillsCanvas.removeEventListener("mousemove", onMouseMoveSkills);
         window.removeEventListener("mouseup", onMouseUpSkills);
+        skillsCanvas.removeEventListener("touchstart", onTouchStartSkills, { passive: false });
+        skillsCanvas.removeEventListener("touchmove", onTouchMoveSkills, { passive: false });
+        window.removeEventListener("touchend", onTouchEndSkills);
 
         skillsCanvas.addEventListener("mousedown", onMouseDownSkills);
         skillsCanvas.addEventListener("mousemove", onMouseMoveSkills);
         window.addEventListener("mouseup", onMouseUpSkills);
+        skillsCanvas.addEventListener("touchstart", onTouchStartSkills, { passive: false });
+        skillsCanvas.addEventListener("touchmove", onTouchMoveSkills, { passive: false });
+        window.addEventListener("touchend", onTouchEndSkills);
+    }
+
+    function onTouchStartSkills(e) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const fakeEvent = { clientX: touch.clientX, clientY: touch.clientY };
+        onMouseDownSkills(fakeEvent);
+    }
+
+    function onTouchMoveSkills(e) {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const fakeEvent = { clientX: touch.clientX, clientY: touch.clientY };
+        onMouseMoveSkills(fakeEvent);
+    }
+
+    function onTouchEndSkills() {
+        onMouseUpSkills();
     }
 
     // Physics events
